@@ -1,0 +1,32 @@
+# Dataset locations and file names.
+# Paths below are the defaults carried over from the original config.py; edit them for your machine.
+# Relative paths are resolved against the project root.
+
+sst_workflow:                      # global SST -> Nino3.4 / IOD indices -> index forecasts
+  input_nc: /home/goitomk/DATA/SST/input/global_sst_1981-01-01_present.nc
+  output_dir: /home/goitomk/DATA/SST/output
+
+gridded_workflow:                  # CHIRPS / tmin / tmax grids, SPI-SPEI, teleconnections
+  input_dir: /home/goitomk/temp/input_data
+  output_dir: /home/goitomk/temp/output_data
+  prcp_file: prcp-chirps-ethio-198101_202607.nc
+  tmin_file: tmin-era5-chirts-ethio-198101_202607.nc
+  tmax_file: tmax-era5-chirts-ethio-198101_202607.nc
+  sst_file: sst_era5_198001_202607.nc
+  enso_excel: ENSO-Years.xlsx      # sheets ENSO_JJAS / ENSO_FMAM with columns Year, Tkey (EL, LA, N)
+  # Optional variable names; null -> auto-detect (dimension / units / name based)
+  prcp_var: null
+  tmin_var: null
+  tmax_var: null
+  analysis_start: "1981-01"
+  analysis_end: "2026-07"
+
+# Station observations (CSV): see src/data_ingestion/station_csv_loader.py
+stations:
+  directory: data/stations
+  missing_values: [-99, -99.9, -999, -9999]   # sentinel codes treated as missing
+  min_day_fraction:                           # share of days in a month that must be present
+    precipitation: 1.0                        # totals are not gap-filled, so require complete months
+    default: 0.8                              # temperature means
+  min_ref_years: 15                           # minimum years in the reference period for an anomaly
+  season_year_label: start                    # cross-year seasons: label by 'start' or 'end' year

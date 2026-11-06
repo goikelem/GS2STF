@@ -1,0 +1,17 @@
+# Regions.  Longitudes may be -180..180 or 0..360 for the SST index boxes.
+
+index_regions:                     # SST index boxes (lat_min, lat_max, lon_min, lon_max)
+  R34:  {lat: [-5.0, 5.0],   lon: [-170.0, -120.0]}   # Nino 3.4: 170W-120W
+  WIOD: {lat: [-10.0, 10.0], lon: [50.0, 70.0]}
+  EIOD: {lat: [-10.0, 4.0],  lon: [90.0, 110.0]}
+
+study_regions:                     # rainfall study regions
+  Ethiopia: {lon: [33.0, 49.0], lat: [3.0, 15.0]}
+  Tigray:   {lon: [36.0, 41.0], lat: [12.5, 15.0]}
+  # Added from the project specification.  APPROXIMATE bounding boxes: replace with
+  # shapefile clipping (src/spatial/shapefile_clip.py, not implemented yet) for exact limits.
+  East_Africa:      {lon: [22.0, 52.0], lat: [-12.0, 23.0]}
+  Upper_Blue_Nile:  {lon: [34.0, 40.0], lat: [7.5, 12.8]}
+default_region: Ethiopia
+
+analogue_lat: [-30.0, 30.0]        # analogue similarity computed on this tropical latitude band (legacy)
