@@ -1,9 +1,3 @@
-Here is a professionally redesigned, highly polished, and visually engaging `README.md` for your **S2S Teleconnection Forecasting** repository.
-
-This version introduces clean typography, well-structured badges, clear visual hierarchy, collapsible/organized sections, and formatted callouts to make your project documentation immediately impressive and easy to navigate.
-
----
-
 ```markdown
 <div align="center">
 
@@ -17,9 +11,6 @@ This version introduces clean typography, well-structured badges, clear visual h
 
 </div>
 
----
-
----
 
 ## 🚀 Quick Start
 
