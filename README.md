@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🌊 S2S Teleconnection Forecasting
+# 🌊 S2STF
 
 ### A modular climate data pipeline and seasonal forecasting toolkit
 
