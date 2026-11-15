@@ -1,0 +1,25 @@
+# Regions.  Longitudes may be -180..180 or 0..360 for the SST index boxes.
+
+index_regions:                     # SST index boxes (lat_min, lat_max, lon_min, lon_max)
+  R34:  {lat: [-5.0, 5.0],   lon: [-170.0, -120.0]}   # Nino 3.4: 170W-120W
+  WIOD: {lat: [-10.0, 10.0], lon: [50.0, 70.0]}
+  EIOD: {lat: [-10.0, 4.0],  lon: [90.0, 110.0]}
+
+extra_index_regions:               # additional ocean predictors for seasonal forecasts (standard NOAA/CPC-style boxes)
+  NINO12: {lat: [-10.0, 0.0],  lon: [-90.0, -80.0]}   # Nino 1+2
+  NINO3:  {lat: [-5.0, 5.0],   lon: [-150.0, -90.0]}  # Nino 3
+  NINO4:  {lat: [-5.0, 5.0],   lon: [160.0, -150.0]}  # Nino 4 (160E-150W, crosses the dateline)
+  IOB:    {lat: [-20.0, 20.0], lon: [40.0, 100.0]}    # tropical Indian Ocean basin (approximate)
+  TNA:    {lat: [5.5, 23.5],   lon: [-57.5, -15.0]}   # tropical North Atlantic
+  TSA:    {lat: [-20.0, 0.0],  lon: [-30.0, 10.0]}    # tropical South Atlantic
+
+study_regions:                     # rainfall study regions
+  Ethiopia: {lon: [33.0, 49.0], lat: [3.0, 15.0]}
+  Tigray:   {lon: [36.0, 41.0], lat: [12.5, 15.0]}
+  # Added from the project specification.  APPROXIMATE bounding boxes: replace with
+  # shapefile clipping (src/spatial/shapefile_clip.py, not implemented yet) for exact limits.
+  East_Africa:      {lon: [22.0, 52.0], lat: [-12.0, 23.0]}
+  Upper_Blue_Nile:  {lon: [34.0, 40.0], lat: [7.5, 12.8]}
+default_region: Ethiopia
+
+analogue_lat: [-30.0, 30.0]        # analogue similarity computed on this tropical latitude band (legacy)

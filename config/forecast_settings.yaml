@@ -1,0 +1,83 @@
+# Analysis and forecasting settings (values carried over unchanged from the original config.py).
+
+baseline:
+  start: 1991
+  end: 2020                        # falls back to the full record if data do not cover it
+  min_days_fraction: 0.5
+
+events:
+  enso_threshold: 0.5
+  enso_min_months: 5
+  enso_use_running_mean: 3
+  enso_strong: 1.5
+  iod_threshold: 0.4
+  iod_min_months: 3
+  iod_strong: 0.8
+
+seasons:                           # month numbers; add your own (e.g. NDJF: [11, 12, 1, 2])
+  sst: {DJF: [12, 1, 2], MAM: [3, 4, 5], JJA: [6, 7, 8], SON: [9, 10, 11], JJAS: [6, 7, 8, 9], OND: [10, 11, 12]}
+  gridded: {JJAS: [6, 7, 8, 9], OND: [10, 11, 12], FMAM: [2, 3, 4, 5]}   # "ALL" (1-12) is added automatically
+  station: {JJAS: [6, 7, 8, 9], ONDJ: [10, 11, 12, 1], FMAM: [2, 3, 4, 5], MAM: [3, 4, 5], JJA: [6, 7, 8],
+            SON: [9, 10, 11], DJF: [12, 1, 2], OND: [10, 11, 12], ALL: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+  teleconnection_extra: {DJF: [12, 1, 2], MAM: [3, 4, 5], JJA: [6, 7, 8], SON: [9, 10, 11],
+                         JFM: [1, 2, 3], AMJ: [4, 5, 6], JAS: [7, 8, 9]}
+
+index_forecasting:
+  indices: [R34, WIOD, EIOD, DMI]
+  horizons: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+  train_start: null
+  train_end: "2010-12"
+  validation_start: "2011-01"
+  validation_end: null
+  cv_folds: 3
+  refit_every: 12
+  selection_fraction: 0.6
+  parsimony_tol: 0.02
+  rf_trees: 300
+  n_lags: 12
+  roll_windows: [3, 6, 12]
+  models: [persistence, climatology, AR, ARIMA, SARIMA, VAR, RandomForest, XGBoost, SVR, GradientBoosting]
+  pi_level: 0.90
+  random_seed: 42
+  n_jobs: -1
+  fast_mode: false
+
+output:
+  subdirs: [indices, analysis, figures, forecast, models, validation, logs, cache]
+  fig_dpi: 200
+  force_recompute: false
+
+drought_indices:                   # SPI / SPEI
+  scales: [1, 3, 6, 12]
+  pet_method: hargreaves
+  spei_distribution: loglogistic
+  spi_distribution: gamma
+  prcp_units: mm/month
+  min_positive_samples: 10
+  min_ref_samples: 20
+  spi_clip: 3.09
+  block_lat: 40
+  drought_threshold: -1.0
+  wet_threshold: 1.0
+  spei_normal_fallback: true
+  class_names: {1: Extremely Dry, 2: Severely Dry, 3: Moderately Dry, 4: Near Normal,
+                5: Moderately Wet, 6: Severely Wet, 7: Extremely Wet}
+
+teleconnection:                    # values in force in the original config.py (later definitions won)
+  lags: [0, 1, 2, 3, 4, 5, 6]
+  sst_res_deg: 2.0
+  rain_res_deg: 0.5
+  predictor_months: 3
+  outlook_lead: 3
+  analogue_top_k: 5
+  n_perm: 999
+  fdr_alpha: 0.10
+
+# Only referenced by legacy/teleconnection_workflow.py (stale, not part of the pipeline).
+legacy:
+  tele_lags: [0, 1, 2, 3, 4, 5, 6]
+  sst_coarsen_deg: 2.0
+  rain_coarsen_deg: 0.25
+  mca_modes: 3
+  analogue_k: 5
+  default_predictor: {JJAS: MAM, FMAM: DJF, OND: JAS, ALL: ALL}
