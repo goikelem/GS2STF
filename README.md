@@ -1,4 +1,4 @@
-# Global Seasonal 2 Sub-seasonal Teleconnection Forecasting (GS2STF)
+# Global Seasonal 2 Sub-seasonal Teleconnection Forecasting (GS2STF) Model
 
 ![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
 ![Status](https://img.shields.io/badge/status-research%20prototype-orange)
