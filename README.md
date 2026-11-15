@@ -40,8 +40,8 @@ It was built for East Africa (Ethiopia, Tigray, the Upper Blue Nile basin), but 
 ## Quick start
 
 ```bash
-git clone <your-repository-url>
-cd S2S_Teleconnection_Forecasting
+git https://github.com/goikelem/GS2STF.git
+cd GS2STF
 pip install -r requirements.txt
 
 python tests/test_demo.py        # about a minute: synthetic data, checks the install
